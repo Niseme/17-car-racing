@@ -3,6 +3,10 @@ import { getModel } from './getModel.js';
 
 const car1 = document.querySelector('.car-1');
 const car2 = document.querySelector('.car-2');
+const winBlock = document.querySelector('.win');
+const winP = winBlock.querySelector('p');
+const playAgain = document.querySelector('button');
+let victory = false;
 
 let car1Position = 0;
 let car2Position = 0;
@@ -27,13 +31,19 @@ const distanceToFinish = windowWidth - carWidth - finishWidth - finishRightGap;
 
 
 addEventListener('keyup', (event) => {
+    if (victory) {
+        return;
+    }
     const key = event.key;
     if (key === 'w') {
         car1Position += 50;
         car1.style.left = car1Position + 'px';
-        if (car1Position > distanceToFinish)
-            console.log('pirma laimejo');
-        location.reload();
+        if (car1Position > distanceToFinish) {
+            victory = true;
+            winBlock.classList.add('show');
+            winP.innerText = 'pirma laimejo';
+        }
+
 
 
 
@@ -41,9 +51,16 @@ addEventListener('keyup', (event) => {
     if (key === 'p') {
         car2Position += 50;
         car2.style.left = car2Position + 'px';
-        if (car2Position > distanceToFinish)
-            console.log('antra laimejo');
-        location.reload();
+        if (car2Position > distanceToFinish) {
+            victory = true;
+            winBlock.classList.add('show');
+            winP.innerText = 'antra laimejo';
+        }
+
     }
 
+})
+
+playAgain.addEventListener('click', () => {
+    location.reload();
 })
