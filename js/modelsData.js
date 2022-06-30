@@ -1,3 +1,3 @@
-const models = ['bmw', 'lambo', 'ferrari', 'moscvich', 'tesla'];
+const models = ['bmw', 'audi', 'ferrari', 'toyota', 'tesla'];
 
 export { models };
